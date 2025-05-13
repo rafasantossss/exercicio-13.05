@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9</title>
+    <style>
+        body.claro {
+            background-color: white;
+            color: black;
+        }
+
+        body.escuro {
+            background-color: black;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="claro">
+    <h1>bem vindo</h1>
+    <button id="modoClaro"> Claro</button>
+    <button id="modoEscuro"> Escuro</button>
+
+    <script>
+        const modoClaro = document.getElementById('modoClaro');
+        const modoEscuro = document.getElementById('modoEscuro');
+        
+        modoClaro.addEventListener('click', () => {
+            document.body.classList.add('claro');
+            document.body.classList.remove('escuro');
+        });
+        
+        modoEscuro.addEventListener('click', () => {
+            document.body.classList.add('escuro');
+            document.body.classList.remove('claro');
+        });
+    </script>
+</body>
+</html>

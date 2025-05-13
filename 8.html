@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="8.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pokedex</h1>
+    <img id="img" class="imagem-pokemon" alt="Imagem do Pokemon">
+    <div class="info-pokemon">
+      <p><strong>Nome:</strong> <span id="nome">---</span></p>
+      <p><strong>Numero:</strong> <span id="numero">---</span></p>
+      <p><strong>Tipo:</strong> <span id="tipo">---</span></p>
+      <p><strong>Altura:</strong> <span id="altura">---</span></p>
+      <p><strong>Peso:</strong> <span id="peso">---</span></p>
+      <p><strong>Habilidades:</strong> <span id="habilidades">---</span></p>
+      <p><strong>Estatísticas:</strong> <span id="estatisticas">---</span></p>
+    </div>
+    <div class="area-busca">
+      <input type="text" id="entrada" placeholder="Nome ou Numero">
+      <button id="botao-buscar">Buscar</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const botao = document.getElementById('botao-buscar');
+      const entrada = document.getElementById('entrada');
+
+      botao.addEventListener('click', async () => {
+        const nome = entrada.value.toLowerCase().trim();
+        if (!nome) {
+          alert("Insira o nome ou número do Pokémon");
+          return;
+        }
+
+        try {
+          const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nome}`);
+          if (!resposta.ok) throw new Error("Pokémon não encontrado");
+          const dados = await resposta.json();
+
+          document.getElementById('nome').textContent = dados.name;
+          document.getElementById('numero').textContent = dados.id;
+          document.getElementById('img').src = dados.sprites.front_default;
+
+          document.getElementById('altura').textContent = (dados.height / 10) + ' m';
+          document.getElementById('peso').textContent = (dados.weight / 10) + ' kg';
+
+          const habilidades = dados.abilities.map(h => h.ability.name).join(', ');
+          document.getElementById('habilidades').textContent = habilidades;
+
+          const stats = dados.stats.map(s => `${s.stat.name}: ${s.base_stat}`).join(' | ');
+          document.getElementById('estatisticas').textContent = stats;
+
+          const tipos = document.getElementById('tipo');
+          tipos.innerHTML = '';
+          dados.types.forEach(t => {
+            const span = document.createElement('span');
+            span.className = 'chip-tipo';
+            span.textContent = t.type.name;
+            span.style.backgroundColor = corTipo(t.type.name);
+            tipos.appendChild(span);
+          });
+
+        } catch (e) {
+          alert(e.message);
+        }
+      });
+
+      function corTipo(tipo) {
+        const cores = {
+          fire: '#f08030', water: '#6890f0', grass: '#78c850', electric: '#f8d030',
+          ice: '#98d8d8', fighting: '#c03028', poison: '#a040a0', ground: '#e0c068',
+          flying: '#a890f0', psychic: '#f85888', bug: '#a8b820', rock: '#b8a038',
+          ghost: '#705898', dragon: '#7038f8', dark: '#705848', steel: '#b8b8d0',
+          fairy: '#f0b6bc', normal: '#a8a878', shadow: '#000000', unknown: '#ffffff'
+        };
+        return cores[tipo] || '#ccc';
+      }
+    });
+  </script>
+</body>
+</html>

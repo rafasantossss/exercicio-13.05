@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  body {
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+    padding: 20px;
+  }
+  
+  .container {
+    background-color: #1e1e2f;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    width: 360px;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    overflow: hidden;
+  }
+  
+  .container h1 {
+    margin-bottom: 16px;
+    font-size: 28px;
+    color: #f4f4f4;
+  }
+  
+  .imagem-pokemon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    background-color: #ffffff;
+  }
+  
+  .info-pokemon {
+    font-size: 18px;
+    color: #e0f7fa;
+  }
+  
+  .info-pokemon p {
+    margin: 7px;
+  }
+  
+  .fita-tipo {
+    display: inline-block;
+    background-color: #ffc400;
+    color: #1e1e2f;
+    padding: 5px 12px;
+    border-radius: 14px;
+    margin-top: 8px;
+  }
+  
+  .area-busca {
+    margin-top: 20px;
+  }
+  
+  .area-busca input {
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    width: 85%;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  
+  .area-busca button {
+    width: 85%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 0;
+    font-size: 15px;
+    color: white;
+    background-color: #ff6f61;
+    cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease;
+  }
+  
+  .area-busca button:hover {
+    background-color: #ff3d3d;
+    color: #ffeaea;
+    transform: scale(1.04);
+  }
+  
+  .chip-tipo {
+    display: inline-block;
+    margin: 5px;
+    background-color: #ffffff;
+    color: #1e1e2f;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 15px;
+  }
+  
